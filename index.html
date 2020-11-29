@@ -6,29 +6,113 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Awesome Quiz</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <script src="script.js" defer></script>
 </head>
 
 <body>
-    <div class="quiz-container" id="quiz">
-        <div class="quiz-header">
-            <h2 id="question">Question text</h2>
-            <ul>
-                <li><input type="radio" id="a" name="answer" class="answer">
-                    <label id="a_text" for="a">Question</label>
-                </li>
-                <li><input type="radio" id="b" name="answer" class="answer">
-                    <label id="b_text" for="b">Question</label>
-                </li>
-                <li><input type="radio" id="c" name="answer" class="answer">
-                    <label id="c_text" for="c">Question</label>
-                </li>
-                <li><input type="radio" id="d" name="answer" class="answer">
-                    <label id="d_text" for="d">Question</label>
+    <div class="mobile-container">
+        <header>
+            <img src="./images/logo-trans.png" alt="logo">
+            <span>Awesome-Quiz</span>
+        </header>
+        <div class="high-score-container">
+            <h3>Highest Score</h3>
+            <div class="high-score-column">
+                <span class="column-item">Name</span>
+                <span class="column-item">Category</span>
+                <span class="column-item">Level</span>
+                <span class="column-item">Score</span>
+            </div>
+            <ul class="high-score-list" id="high-score-list">
+                <li>
+                    <div class="high-score-item">
+                        <span class="hs-item">Tuyen</span>
+                        <span class="hs-item">Animals</span>
+                        <span class="hs-item">Hard</span>
+                        <span class="hs-item">100</span>
+                    </div>
                 </li>
             </ul>
         </div>
-        <button id="submit">Submit</button>
+        <main class="category-selection">
+            <h3>Category</h3>
+            <div class="categories" id="categories">
+                <div class="category">
+                    <img src="Animal" alt="Animal">
+                    <div class="category-body">
+                        <h4>Animals</h4>
+                    </div>
+                </div>
+                <div class="category">
+                    <img src="Animal" alt="Animal">
+                    <div class="category-body">
+                        <h4>Animals</h4>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <div class="category-container hidden" id="category-popup">
+            <div class="popup">
+                <button id="close-popup" class="close-popup">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="category-info" id="category-info">
+                    <div id="cate-video">
+                        <video autoplay muted loop id="video-frame">
+                            <source src="res/animals/video.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div id="cate-title">Animals</div>
+                </div>
+
+                <div class="configuration">
+                    <p>Difficulty</p>
+                    <div class="difficulty-list">
+                        <div class="config-item difficulty-item">
+                            <span>Easy</span>
+                        </div>
+                        <div class="config-item difficulty-item">
+                            <span>Med</span>
+                        </div>
+                        <div class="config-item difficulty-item">
+                            <span>Hard</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="configuration">
+                    <p>Number of Questions</p>
+                    <div class="quiz-set-list">
+                        <div class="config-item set-item">
+                            <span>10</span>
+                        </div>
+                        <div class="config-item set-item">
+                            <span>20</span>
+                        </div>
+                        <div class="config-item set-item">
+                            <span>50</span>
+                        </div>
+                        <div class="config-item set-item">
+                            <span>100</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="go">
+                    <button class="btn-go">GO</button>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="author">
+                <p class="author-info">Created by Tuyen Nguyen</p>
+                <div class="socials">
+                    <a class="sc-btn btn-facebook" href="https://www.facebook.com/tuyen.trong.3" target="_blank">f</a>
+                    <a class="sc-btn btn-linkedin" href="https://www.linkedin.com/in/tuyennguyen96"
+                        target="_blank">in</a>
+                    <a class="sc-btn btn-github" href="https://github.com/trongtuyen96" target="_blank">GitHub</a>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 
