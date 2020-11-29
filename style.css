@@ -25,11 +25,11 @@ body {
 
 h3 {
     margin: 1rem 0rem 0rem;
-    color: #000;
+    font-size: x-large;
 }
 
 .mobile-container {
-    background-color:#DEEAEE;
+    background-color: #DEEAEE;
     box-shadow: 0 0 2px #3333331A;
     border-radius: 3px;
     overflow: hidden;
@@ -68,10 +68,10 @@ header img {
 }
 
 .column-item {
-    font-size: small;
+    font-size: medium;
     min-width: 6rem;
     justify-content: center;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .high-score-list {
@@ -90,7 +90,7 @@ header img {
 }
 
 .hs-item {
-    font-size: x-small;
+    font-size: small;
     min-width: 6rem;
     justify-content: center;
 }
@@ -99,6 +99,10 @@ header img {
 
 .category-selection {
     text-align: center;
+}
+
+.category-selection h3 {
+    color: #607cd8;
 }
 
 .categories {
@@ -175,6 +179,7 @@ header img {
     top: 1rem;
     right: 1rem;
     color: #FFFFFF;
+    z-index: 1;
 }
 
 #category-info {
