@@ -195,6 +195,8 @@ header img {
 #video-frame {
     max-width: 400px;
     width: 100%;
+    pointer-events: none;
+    z-index: 0;
 }
 
 .configuration {
@@ -230,6 +232,7 @@ header img {
 }
 
 .config-item {
+    font-family: "Poppins", sans-serif;
     color: #607cd8;
     font-weight: bold;
     cursor: pointer;
@@ -252,21 +255,24 @@ header img {
     user-select: none;
 }
 
-.config-item:active {
+.config-item:focus {
     background-color: #6544c0;
     background-image: linear-gradient(315deg, #734ae8 0%, #89d4cf 74%);
     color: #ffffff;
     border: none;
+    outline-style: none;
 }
 
-.go {
+.confirm-section {
     display: flex;
     justify-items: center;
     align-content: center;
+    justify-content: space-between;
+    margin: auto;
+    width: 70%;
 }
 
 .btn-go {
-    margin: auto;
     background-color: #6544c0;
     background-image: linear-gradient(315deg, #734ae8 0%, #89d4cf 74%);
     border: none;
@@ -281,8 +287,29 @@ header img {
     cursor: pointer;
 }
 
+.btn-back {
+    background-color: #778790;
+    /* background-image: linear-gradient(315deg, #734ae8 0%, #89d4cf 74%); */
+    border: none;
+    color: #ffffff;
+    border-radius: 6px;
+    width: 30%;
+    font-size: large;
+    font-weight: 700;
+    padding: 0.8rem 0;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 4px #778790;
+    cursor: pointer;
+}
+
 .btn-go:focus {
     outline-style: none;
+    box-shadow: 0 0 10px #778790;
+}
+
+.btn-back:focus {
+    outline-style: none;
+    box-shadow: 0 0 10px #778790;
 }
 
 /* Author */
