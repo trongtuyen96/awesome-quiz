@@ -18,7 +18,7 @@ function loadCategories() {
             curCate = item.toLowerCase();
             loadVideoForPopup(curCate);
 
-            popupEl.children[0].children[1].children[1].innerHTML = category;
+            popupEl.children[0].children[1].children[1].innerHTML = item;
             popupEl.classList.remove('hidden');
         })
         categoryEl.innerHTML = `<img src="res/${item}/image.jpg" alt="${item}">
