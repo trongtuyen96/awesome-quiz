@@ -3,7 +3,13 @@ const categoryEls = document.querySelectorAll('.category');
 const popupEl = document.getElementById('category-popup');
 const popupCloseBtn = document.getElementById("close-popup");
 const popupBackBtn = document.querySelector(".btn-back");
-let curCate = "";
+
+const popupGoBtn = document.querySelector(".btn-go");
+const popupQuizEl = document.getElementById('quiz-popup');
+const popupQuizCloseBtn = document.getElementById("close-quiz-popup");
+
+
+var curCate = "";
 
 const categoryList = ["Animals", "Movies", "Sports"];
 
@@ -13,15 +19,16 @@ function loadCategories() {
     categoryList.forEach(item => {
         const categoryEl = document.createElement('div');
         categoryEl.classList.add("category");
+        curCate = item;
 
         categoryEl.addEventListener('click', () => {
-            curCate = item.toLowerCase();
-            loadVideoForPopup(curCate);
+            curCate = item;
+            loadVideoForPopup(item.toLowerCase());
 
-            popupEl.children[0].children[1].children[1].innerHTML = item;
+            document.getElementById("cate-title").innerHTML = curCate;
             popupEl.classList.remove('hidden');
         })
-        categoryEl.innerHTML = `<img src="res/${item}/image.jpg" alt="${item}">
+        categoryEl.innerHTML = `<img src="res/${curCate.toLowerCase()}/image.jpg" alt="${item}">
         <div class="category-body">
             <h4>${item}</h4>
         </div>`;
@@ -35,16 +42,6 @@ function loadVideoForPopup(category) {
     frame.setAttribute('src', "res/" + category + "/video.mp4");
 }
 
-categoryEls.forEach((categoryEl) => categoryEl.addEventListener('click', () => {
-    curCate = categoryEl.children[1].children[0].innerHTML.toLowerCase();
-    loadVideoForPopup(curCate);
-
-    popupEl.children[0].children[1].children[1].innerHTML = curCate.charAt(0).toUpperCase() + curCate.slice(1);
-    popupEl.classList.remove('hidden');
-
-}));
-
-
 popupCloseBtn.addEventListener('click', () => {
     // Stop the video player
     const frame = document.getElementById("video-frame");
@@ -55,3 +52,11 @@ popupCloseBtn.addEventListener('click', () => {
     popupEl.classList.add('hidden');
 });
 
+
+popupGoBtn.addEventListener('click',()=> {
+    popupQuizEl.classList.remove('hidden');
+})
+
+popupQuizCloseBtn.addEventListener('click',()=> {
+    popupQuizEl.classList.add('hidden');
+})

@@ -46,7 +46,7 @@
         <main class="category-selection">
             <h3>CATEGORY</h3>
             <div class="categories" id="categories">
-                
+
             </div>
         </main>
         <div class="category-container hidden" id="category-popup">
@@ -97,6 +97,73 @@
                 <div class="confirm-section">
                     <button class="btn-back">BACK</button>
                     <button class="btn-go">GO</button>
+                </div>
+            </div>
+        </div>
+        <div class="quiz-container hidden" id="quiz-popup">
+            <div class="quiz-popup">
+                <button id="close-quiz-popup" class="close-quiz-popup">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="cate-header">
+                    <span>Animals Quiz</span>
+                </div>
+                <div class="status-info">
+                    <div class="quiz-number">
+                        <div class="current-quiz">#475</div>
+                        <div class="total-quiz">of 1176</div>
+                    </div>
+                    <div class="quiz-status">
+                        <div class="wrong-quiz">
+                            <i class="fas fa-times-circle"> 86</i>
+                        </div>
+                        <div class="correct-quiz">
+                            <i class="fas fa-check-circle"> 393</i>
+                        </div>
+                    </div>
+                </div>
+                <div class="progress-bar"></div>
+                <div class="quiz-content" id="quiz-content">
+                    <div class="quiz">What should you do when approaching a road construction work zone?
+                    </div>
+                    <ul class="answers">
+                        <li class="answer">
+                            <span>A</span>
+                            <span>Prepare to slow down or stop.</span>
+                        </li>
+                        <li class="answer">
+                            <span>B</span>
+                            <span>Prepare to watch the ongoing work.</span>
+                        </li>
+                        <li class="answer">
+                            <span>C</span>
+                            <span>Close the distance between you and any vehicle ahead of you.</span>
+                        </li>
+                        <li class="answer">
+                            <span>D</span>
+                            <span>Help the workers.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="select-answer-zone">
+                    <div class="answer-zone">
+                        <button class="config-item">
+                            <span>A</span>
+                        </button>
+                        <button class="config-item">
+                            <span>B</span>
+                        </button>
+                        <button class="config-item">
+                            <span>C</span>
+                        </button>
+                        <button class="config-item">
+                            <span>D</span>
+                        </button>
+                        <button class="config-item next">
+                            <i class="fas fa-forward"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
