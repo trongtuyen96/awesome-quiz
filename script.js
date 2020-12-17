@@ -8,12 +8,22 @@ const popupCateGoBtn = document.querySelector(".btn-go");
 const popupQuizEl = document.getElementById('quiz-popup');
 const popupQuizCloseBtn = document.getElementById("close-quiz-popup");
 
+const correctQuizCountEl = document.querySelector(".correct-quiz-count");
+const wrongQuizCountEl = document.querySelector(".wrong-quiz-count");
+const correctQuizEl = document.querySelector(".correct-quiz");
+const wrongQuizEl = document.querySelector(".wrong-quiz");
+
 
 var curCate = "";
 
 const categoryList = ["Animals", "Movies", "Sports"];
+const categoryCodeList = [27, 11, 21];
 var quizList = "";
 var curQuiz = 0;
+var curAnswer = "";
+var curCorrectAnswer = "";
+var correctQuizCount = 0;
+var wrongQuizCount = 0;
 
 loadCategories();
 
@@ -67,7 +77,7 @@ popupCateBackBtn.addEventListener('click', () => {
 
 popupCateGoBtn.addEventListener('click', async () => {
     popupQuizEl.classList.remove('hidden');
-    await loadQuizs();
+    await loadQuizs(curCate, "", "");
     loadSingleQuiz(0);
 })
 
@@ -76,8 +86,17 @@ popupQuizCloseBtn.addEventListener('click', () => {
 })
 
 
-async function loadQuizs(category, difficulty, set) {
-    const URL = "https://opentdb.com/api.php?amount=50&category=27&type=multiple"
+async function loadQuizs(category, difficulty, amount) {
+    // Reset
+    curQuiz = 0;
+    correctQuizCount = 0;
+    wrongQuizCount = 0;
+    correctQuizCountEl.innerHTML = correctQuizCount;
+    wrongQuizCountEl.innerHTML = correctQuizCount;
+
+    const code = categoryCodeList[categoryList.indexOf(category)];
+
+    const URL = "https://opentdb.com/api.php?amount=50&category=" + code + "&type=multiple"
     const res = await fetch(URL);
     const resData = await res.json();
 
@@ -91,12 +110,28 @@ function loadSingleQuiz(position) {
     const quizNumberEl = document.querySelector(".current-quiz");
     const quizTotalEl = document.querySelector(".total-quiz");
 
-    quizNumberEl.innerHTML = "#"+ (++curQuiz);
+    quizNumberEl.innerHTML = "#" + (++curQuiz);
     quizTotalEl.innerHTML = "of 50"
 
     quizEl.innerHTML = quizList[position].question;
     var answerArray = [quizList[position].correct_answer, quizList[position].incorrect_answers[0], quizList[position].incorrect_answers[1], quizList[position].incorrect_answers[2]]
-    shuffleArray(answerArray);
+    switch (shuffleArray(answerArray)) {
+        case 0:
+            curCorrectAnswer = "A";
+            break;
+        case 1:
+            curCorrectAnswer = "B";
+            break;
+        case 2:
+            curCorrectAnswer = "C";
+            break;
+        case 3:
+            curCorrectAnswer = "D";
+            break;
+        default:
+            break;
+    }
+
 
     const answersEl = document.querySelector(".answers");
     answersEl.innerHTML = ""
@@ -126,16 +161,43 @@ function loadSingleQuiz(position) {
 
         answersEl.appendChild(answerEl);
     })
+
+    const answersBtn = document.querySelectorAll(".answer-select");
+    console.log(answersBtn);
+    answersBtn.forEach(ansBtn => {
+        ansBtn.addEventListener('click', () => {
+            curAnswer = ansBtn.children[0].innerHTML;
+            console.log("curAnser: " + curAnswer);
+        })
+    })
 }
 
 function shuffleArray(array) {
+    const correctAns = array[0];
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
+    return array.indexOf(correctAns);
 }
 
 const btnQuizNext = document.querySelector(".next");
 btnQuizNext.addEventListener('click', () => {
-    loadSingleQuiz(++curQuiz);
+    console.log("curCorrectAnswer" + curCorrectAnswer);
+    if (curAnswer === curCorrectAnswer) {
+        correctQuizCount++;
+        correctQuizCountEl.innerHTML = correctQuizCount;
+        correctQuizEl.classList.add("ping");
+    }
+    else {
+        wrongQuizCount++;
+        wrongQuizCountEl.innerHTML = wrongQuizCount;
+        wrongQuizEl.classList.add("ping");
+    }
+    setTimeout(function () {
+        correctQuizEl.classList.remove("ping");
+        wrongQuizEl.classList.remove("ping");
+    }, 400)
+
+    loadSingleQuiz(curQuiz);
 })

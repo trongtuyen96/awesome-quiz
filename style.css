@@ -192,7 +192,7 @@ header img {
     color: #FFFFFF;
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;
-    box-shadow:  0 3px 3px #778790;
+    box-shadow: 0 3px 3px #778790;
 }
 
 #video-frame {
@@ -409,6 +409,7 @@ header img {
 .wrong-quiz {
     color: #fa0000;
     font-size: 1.2rem;
+    transition: transform .4s; /* Animation */
 }
 
 .wrong-quiz span {
@@ -420,6 +421,11 @@ header img {
 .correct-quiz {
     color: #00ff6a;
     font-size: 1.2rem;
+    transition: transform .4s; /* Animation */
+}
+
+.ping {
+    transform: scale(2);
 }
 
 .correct-quiz span {
@@ -431,7 +437,7 @@ header img {
 .quiz-content {
     background-color: #FFFFFF;
     border-radius: 10px;
-    box-shadow:  0 3px 6px #778790;
+    box-shadow: 0 3px 6px #778790;
     max-width: 85%;
     margin: auto;
     text-align: center;
@@ -463,7 +469,6 @@ header img {
     font-size: large;
     margin-right: 0.5rem;
 }
-
 
 /* Slect answer zone */
 
