@@ -105,11 +105,13 @@ async function loadQuizs(category, difficulty, amount) {
 }
 
 function loadSingleQuiz(position) {
+    const cateHeaderEl = document.querySelector(".cate-header");
     const quizEl = document.querySelector(".quiz");
 
     const quizNumberEl = document.querySelector(".current-quiz");
     const quizTotalEl = document.querySelector(".total-quiz");
 
+    cateHeaderEl.children[0].innerHTML = curCate + " Quiz";
     quizNumberEl.innerHTML = "#" + (++curQuiz);
     quizTotalEl.innerHTML = "of 50"
 
