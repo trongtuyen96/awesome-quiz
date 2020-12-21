@@ -16,8 +16,12 @@ const wrongQuizEl = document.querySelector(".wrong-quiz");
 
 var curCate = "";
 
-const categoryList = ["Animals", "Movies", "Sports"];
-const categoryCodeList = [27, 11, 21];
+const categoryList = ["Books", "Movies", "Music",
+    "Television", "Video Games", "Board Games", "Science & Nature",
+    "Mythology", "Sports", "Geography", "History", "Art", "Celebrities",
+    "Animals", "Vehicles", "Comics", "Anime & Manga", "Cartoon & Animations"];
+const categoryCodeList = [10, 11, 12, 14, 15, 16, 17, 20, 21, 22, 23, 25,
+    26, 27, 28, 29, 31, 32];
 var quizList = "";
 var curQuiz = 0;
 var curAnswer = "";
