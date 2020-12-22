@@ -111,6 +111,32 @@ header img {
     justify-content: center;
 }
 
+.category-view {
+    background-color: #6544c0;
+    background-image: linear-gradient(315deg, #734ae8 0%, #89d4cf 74%);
+    color: #ffffff;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 3rem;
+    border-radius: 10%;
+    border: none;
+    /* Important */
+    justify-content: center;
+    align-items: center;
+    /* Prevent selected as text */
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.category-view:focus {
+    border: none;
+    outline-style: none;
+}
+
 /* Category */
 
 .category {
@@ -124,6 +150,10 @@ header img {
     width: 80%;
 }
 
+.grid {
+    width: 40%;
+}
+
 .category img {
     object-fit: cover;
     width: 100%;
@@ -134,10 +164,17 @@ header img {
     padding: 0rem 0 0.5rem;
 }
 
-.category-body h4 {
+.title {
     margin: 0;
     text-align: center;
     font-size: x-large;
+    font-weight: normal;
+}
+
+.grid-title {
+    margin: 0;
+    text-align: center;
+    font-size: medium;
     font-weight: normal;
 }
 
@@ -409,7 +446,8 @@ header img {
 .wrong-quiz {
     color: #fa0000;
     font-size: 1.2rem;
-    transition: transform .4s; /* Animation */
+    transition: transform .4s;
+    /* Animation */
 }
 
 .wrong-quiz span {
@@ -421,7 +459,8 @@ header img {
 .correct-quiz {
     color: #00ff6a;
     font-size: 1.2rem;
-    transition: transform .4s; /* Animation */
+    transition: transform .4s;
+    /* Animation */
 }
 
 .ping {

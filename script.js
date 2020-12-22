@@ -13,6 +13,8 @@ const wrongQuizCountEl = document.querySelector(".wrong-quiz-count");
 const correctQuizEl = document.querySelector(".correct-quiz");
 const wrongQuizEl = document.querySelector(".wrong-quiz");
 
+const categoryViewBtn = document.querySelector(".category-view");
+
 
 var curCate = "";
 
@@ -28,6 +30,7 @@ var curAnswer = "";
 var curCorrectAnswer = "";
 var correctQuizCount = 0;
 var wrongQuizCount = 0;
+var curView = "List";
 
 loadCategories();
 
@@ -46,7 +49,7 @@ function loadCategories() {
         })
         categoryEl.innerHTML = `<img src="res/${curCate.toLowerCase()}/image.jpg" alt="${item}">
         <div class="category-body">
-            <h4>${item}</h4>
+            <span class="title">${item}</span>
         </div>`;
 
         categoryListEl.appendChild(categoryEl);
@@ -237,7 +240,7 @@ function loadSingleQuiz(position) {
             correctQuizEl.classList.remove("ping");
             wrongQuizEl.classList.remove("ping");
         }, 400)
-    
+
         loadSingleQuiz(curQuiz);
     })
 
@@ -259,6 +262,29 @@ function shuffleArray(array) {
     }
     return array.indexOf(correctAns);
 }
+
+categoryViewBtn.addEventListener('click', () => {
+    var categoryEls = document.querySelectorAll(".category");
+    var categoryBodyTitleEls = document.querySelectorAll(".title");
+    if (curView == "List") {
+        categoryEls.forEach(item => {
+            item.classList.add("grid");
+        })
+        categoryBodyTitleEls.forEach(item => {
+            item.classList.add("grid-title");
+        })
+        curView = "Grid"
+    } else {
+        categoryEls.forEach(item => {
+            item.classList.remove("grid");
+        })
+        categoryBodyTitleEls.forEach(item => {
+            item.classList.remove("grid-title");
+        })
+        curView = "List"
+    }
+    categoryViewBtn.innerHTML = curView;
+})
 
 // const btnQuizNext = document.querySelector(".next");
 // btnQuizNext.addEventListener('click', () => {
