@@ -121,6 +121,7 @@ header img {
     width: 3rem;
     border-radius: 10%;
     border: none;
+    box-shadow: 0 0 10px #0c0c0c4a;
     /* Important */
     justify-content: center;
     align-items: center;
