@@ -100,7 +100,7 @@ async function loadQuizs(category, difficulty, amount) {
 
     const code = categoryCodeList[categoryList.indexOf(category)];
 
-    const URL = "https://opentdb.com/api.php?amount=50&category=" + code + "&type=multiple"
+    const URL = "https://opentdb.com/api.php?amount=50&category=" + code;
     const res = await fetch(URL);
     const resData = await res.json();
 
@@ -120,7 +120,14 @@ function loadSingleQuiz(position) {
     quizTotalEl.innerHTML = "of 50"
 
     quizEl.innerHTML = quizList[position].question;
-    var answerArray = [quizList[position].correct_answer, quizList[position].incorrect_answers[0], quizList[position].incorrect_answers[1], quizList[position].incorrect_answers[2]]
+    var answerArray;
+    if (quizList[position].type == "multiple") {
+        // Multiple
+        answerArray = [quizList[position].correct_answer, quizList[position].incorrect_answers[0], quizList[position].incorrect_answers[1], quizList[position].incorrect_answers[2]]
+    } else {
+        // True False
+        answerArray = [quizList[position].correct_answer, quizList[position].incorrect_answers[0]];
+    }
     switch (shuffleArray(answerArray)) {
         case 0:
             curCorrectAnswer = "A";
@@ -168,6 +175,72 @@ function loadSingleQuiz(position) {
         answersEl.appendChild(answerEl);
     })
 
+    const answerZoneEl = document.querySelector(".answer-zone");
+    answerZoneEl.innerHTML = "";
+
+    if (quizList[position].type == "multiple") {
+        // Multiple
+        answerArray.forEach(answer => {
+            switch (answerArray.indexOf(answer)) {
+                case 0:
+                    quizOption = "A";
+                    break;
+                case 1:
+                    quizOption = "B";
+                    break;
+                case 2:
+                    quizOption = "C";
+                    break;
+                case 3:
+                    quizOption = "D";
+                    break;
+                default:
+                    break;
+            }
+            const selectEl = document.createElement("button");
+            selectEl.classList.add("config-item", "answer-select");
+            selectEl.innerHTML = `<span>${quizOption}</span>`;
+            answerZoneEl.appendChild(selectEl);
+        })
+    } else {
+        // True False
+        const selectEl1 = document.createElement("button");
+        selectEl1.classList.add("config-item", "answer-select");
+        selectEl1.innerHTML = `<span>A</span>`;
+        answerZoneEl.appendChild(selectEl1);
+
+        const selectEl2 = document.createElement("button");
+        selectEl2.classList.add("config-item", "answer-select");
+        selectEl2.innerHTML = `<span>B</span>`;
+        answerZoneEl.appendChild(selectEl2);
+    }
+
+    // Add button next
+    const nextBtnEl = document.createElement("button");
+    nextBtnEl.classList.add("config-item", "next");
+    nextBtnEl.innerHTML = `<i class="fas fa-forward"></i>`;
+    answerZoneEl.appendChild(nextBtnEl);
+
+    nextBtnEl.addEventListener('click', () => {
+        console.log("curCorrectAnswer" + curCorrectAnswer);
+        if (curAnswer === curCorrectAnswer) {
+            correctQuizCount++;
+            correctQuizCountEl.innerHTML = correctQuizCount;
+            correctQuizEl.classList.add("ping");
+        }
+        else {
+            wrongQuizCount++;
+            wrongQuizCountEl.innerHTML = wrongQuizCount;
+            wrongQuizEl.classList.add("ping");
+        }
+        setTimeout(function () {
+            correctQuizEl.classList.remove("ping");
+            wrongQuizEl.classList.remove("ping");
+        }, 400)
+    
+        loadSingleQuiz(curQuiz);
+    })
+
     const answersBtn = document.querySelectorAll(".answer-select");
     console.log(answersBtn);
     answersBtn.forEach(ansBtn => {
@@ -187,23 +260,23 @@ function shuffleArray(array) {
     return array.indexOf(correctAns);
 }
 
-const btnQuizNext = document.querySelector(".next");
-btnQuizNext.addEventListener('click', () => {
-    console.log("curCorrectAnswer" + curCorrectAnswer);
-    if (curAnswer === curCorrectAnswer) {
-        correctQuizCount++;
-        correctQuizCountEl.innerHTML = correctQuizCount;
-        correctQuizEl.classList.add("ping");
-    }
-    else {
-        wrongQuizCount++;
-        wrongQuizCountEl.innerHTML = wrongQuizCount;
-        wrongQuizEl.classList.add("ping");
-    }
-    setTimeout(function () {
-        correctQuizEl.classList.remove("ping");
-        wrongQuizEl.classList.remove("ping");
-    }, 400)
+// const btnQuizNext = document.querySelector(".next");
+// btnQuizNext.addEventListener('click', () => {
+//     console.log("curCorrectAnswer" + curCorrectAnswer);
+//     if (curAnswer === curCorrectAnswer) {
+//         correctQuizCount++;
+//         correctQuizCountEl.innerHTML = correctQuizCount;
+//         correctQuizEl.classList.add("ping");
+//     }
+//     else {
+//         wrongQuizCount++;
+//         wrongQuizCountEl.innerHTML = wrongQuizCount;
+//         wrongQuizEl.classList.add("ping");
+//     }
+//     setTimeout(function () {
+//         correctQuizEl.classList.remove("ping");
+//         wrongQuizEl.classList.remove("ping");
+//     }, 400)
 
-    loadSingleQuiz(curQuiz);
-})
+//     loadSingleQuiz(curQuiz);
+// })
