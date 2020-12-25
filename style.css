@@ -46,9 +46,14 @@ header {
 }
 
 header img {
-    width: 50px;
-    height: 50px;
+    width: 70px;
     margin-right: 2rem;
+}
+
+header span {
+    color: #607cd8;
+    font-size: large;
+    font-weight: bolder;
 }
 
 /* Highest Score Container*/
@@ -113,7 +118,7 @@ header img {
 
 .category-view {
     background-color: #6544c0;
-    background-image: linear-gradient(315deg, #734ae8 0%, #89d4cf 74%);
+    background-image: linear-gradient(315deg, #734ae8 0%, #89d4cf 99%);
     color: #ffffff;
     font-family: "Poppins", sans-serif;
     cursor: pointer;
@@ -131,6 +136,9 @@ header img {
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+
+    position: relative;
+    left: 34%;
 }
 
 .category-view:focus {
