@@ -40,17 +40,17 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
+    /* padding: 1rem; */
     /*fix*/
     max-width: 100%;
 }
 
 header img {
-    width: 50px;
+    width: 60px;
     margin-right: 2rem;
 }
 
-header span {
+header h4 {
     color: #607cd8;
     font-size: large;
     font-weight: bolder;
